@@ -1,0 +1,520 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner_slider %}
+<!--Banner Slider-->
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class=" carousel-button btn btn-warning carousel-caption d-none d-md-block">
+            <h5><a href="{% url 'customerregistration' %}" class="nav-link text-white">Create Your Account</a></h5>
+        </div>
+        <div class="carousel-item active">
+            <img src="{% static 'Shop/images/banner/slider-1.jpg' %}" class="d-block w-100" alt="...">
+            
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-2.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-3.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-4.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-5.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-6.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'Shop/images/banner/slider-7.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
+<!-- End Banner Slider -->
+{% endblock banner_slider %}
+
+
+
+{% block main-content %}
+<!-- Payment Info Section -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card mb-3 custom-payment">
+                <div class="card-body" >
+                    <img src="{% static 'Shop/images/pay/card-pay.png' %}" alt="" srcset=""  height="155px", width="225px">
+                </div>
+                <h3 class = "custom-header-pay">Card Payment</h3>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3 custom-payment">
+                <div class="card-body">
+                    <img src="{% static 'Shop/images/pay/digital-pay.png' %}" alt="" srcset="" height="155px", width="225px">
+                </div>
+                <h3 class = "custom-header-pay">Digital Payment</h3>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3 custom-payment">
+                <div class="card-body" >
+                    <img src="{% static 'Shop/images/pay/pay-checkout.png' %}" alt="" srcset=""  height="155px", width="225px">
+                    
+                </div>
+                <h3 class = "custom-header-pay">Exciting Offer</h3>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3 custom-payment">
+                <div class="card-body">
+                    <img src="{% static 'Shop/images/pay/cod.png' %}" alt="" srcset="" height="155px", width="225px">
+                </div>
+                <h3 class = "custom-header-pay">Cash on Delivery</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Payment Info Section -->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start 1st Product Slider-->
+
+<div class="mx-3">
+    <h2 class = "product-title-home">Smart Phone</h2>
+    <div class = "container">
+        <!-- Slider 3 -->
+        <div class="owl-carousel slider3">
+            <!--comning from views.py attributes-->
+            {% for sm in smartphone %}
+            <div class="item custom-card-2"><img src="{{sm.product_image.url}}" alt="" height="250px"><span class="fw-bold" style="font-size: 17px">{{sm.title}}</span><br><span class="fs-5">{{sm.discounted_price}}</span><br>
+            <div class="d-flex border-top">
+                    <small class="w-50 text-center border-end py-2">
+                        <a class="text-body" href="{% url 'product-details' sm.id %}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                    </small>
+                    <small class="w-50 text-center py-2">
+                        <a class="text-body" href="{% url 'product-details' sm.id %}"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                    </small>
+            </div>
+                
+            </div>
+            
+            {% endfor %}
+            
+        </div>
+        
+    </div>
+</div>
+
+<!--End 1st Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start 2nd Product Slider-->
+<div class="mx-3">
+    <h2 class = "product-title-home">HoverBoard</h2>
+    <div class = "container">
+        <!-- Slider 3 -->
+        <div class="owl-carousel slider4">
+            {% for hb in hoverboard %}
+            <div class="item custom-card"><img src="{{hb.product_image.url}}" alt="" height="250px"><span class="fw-bold" style="font-size: 17px">{{hb.title}}</span><br><span class="fs-5">{{hb.discounted_price}}</span><br>
+            <a href="{% url 'product-details' hb.id %}" class="btn btn-info">Add to Card</a> 
+                        
+
+               
+                </div>
+            
+            {% endfor %}
+        
+        </div>
+        
+    </div>
+</div>
+<!--End 2nd Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start 3rd Product Slider-->
+<div class="mx-3">
+    <h2 class = "product-title-home">Action Camera</h2>
+    <div class = "container my-3">
+        <!-- Slider 2 -->
+        <div class="owl-carousel slider4">
+            <!--key of virtualreality from views.py under Shop apps-->
+            {% for ac in actioncamera %}
+            <div class="card home-product-card-1">
+                <!--product-detail: url name from urls.py under Shop apps-->
+                <!--id: coming from models.py-->
+            
+                    <!--product_image, title, discounted_price: coming from models.py under Shop Apps-->
+                    <div class="item"><img src="{{ ac.product_image.url }}" alt="" height="200px"><span class="fw-bold title-ac-home"
+                            style="color: white; font-size: 17px;">{{ac.title}}</span><br><span class="fs-5 " style="color: white;">Tk.
+                            {{ac.discounted_price}}</span> <span class="fs-5 fw-light text-decoration-line-through"
+                            style="color: red;">
+                            <b>{{ac.selling_price}}</b>
+                        </span></div>
+                    <a href="{% url 'product-details' ac.id %}" class="btn btn-info custom-button-1">Add to Card</a> 
+                </a>
+            </div>
+            {% endfor %}
+    
+        </div>
+    </div>
+</div>
+<!--End 3rd Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start 4th Product Slider-->
+<div>
+    <h2 class = "product-title-home">HoverBoard</h2>
+    <div class = "container">
+        <div class="owl-carousel slider1" style="width: 1100px;padding-left: 125px; padding-left: 125px;" >
+            {% for hb in hoverboard %}
+            <div class="card shadow custom-single mb-3 ml-3" style="max-width: 850px;">
+                <div class="row no-gutters">
+                <div class="col-lg-4">
+                    <img src="{{hb.product_image.url}}" class="card-img" alt="..." height="100%">
+                </div>
+                <div class="col-lg-8">
+                    <div class="card-body" style="background-color: #bbbb28;">
+                    <h5 class="card-title">{{hb.title}}</h5>
+                    <p  style="color: #181c21;">{{hb.description}}</p>
+                    <p><span class="fs-5 " style="color: white;">Tk.
+                        {{hb.discounted_price}}</span> <span class="fs-5 fw-light text-decoration-line-through"
+                        style="color: red;">
+                        <b>{{hb.selling_price}}</b>
+                        
+                    </span></p>
+                    <a href="{% url 'product-details' hb.id %}" class="btn btn-info">Add to Card</a> 
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+            {% endfor %}
+        </div>
+    
+    </div>
+</div>
+<!--End 4th Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+
+<!--Start 5th Product Slider-->
+<div class="mx-3">
+    <h2 class = "product-title-home">Ebook</h2>
+    <div class = "container">
+        <!-- Slider 3 -->
+        <div class="owl-carousel slider4">
+            {% for e in ebook %}
+            <div class="item"><img src="{{e.product_image.url}}" alt="" height="220px"><span class="fw-bold">{{e.title}}</span><br><span style="color:red"><small>Current Price: Tk. {{e.discounted_price}}</small></span><br><span style="font-size: 20px"><small>Previous Price: Tk. {{e.selling_price}}</small></span><br>
+            <a href="{% url 'product-details' e.id %}" class="btn btn-info">Add to Card</a> 
+                        
+
+               
+            </div>
+            
+            {% endfor %}
+        
+        </div>
+        
+    </div>
+</div>
+
+    
+
+<!--End 5th Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!-- Payment Info Section -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="card mb-3">
+                <div class="card-body" >
+                    <img src="{% static 'Shop/images/pay/card-pay.png' %}" alt="" srcset=""  height="155px", width="225px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <img src="{% static 'Shop/images/pay/digital-pay.png' %}" alt="" srcset="" height="155px", width="225px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3">
+                <div class="card-body" >
+                    <img src="{% static 'Shop/images/pay/pay-checkout.png' %}" alt="" srcset=""  height="155px", width="225px">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <img src="{% static 'Shop/images/pay/cod.png' %}" alt="" srcset="" height="155px", width="225px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Payment Info Section -->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start 6th Product Slider-->
+<div class = "container">
+<div class="mx-3">
+    <h2 class = "product-title-home">Virtual Box</h2>
+    <!-- Slider 2 -->
+    <div class="owl-carousel slider3">
+        <!--key of virtualreality from views.py under Shop apps-->
+        {% for v in virtualreality %}
+        <div class="card home-product-card-2 my-3">
+            <!--product-detail: url name from urls.py under Shop apps-->
+            <!--id: coming from models.py-->
+            
+                <!--product_image, title, discounted_price: coming from models.py under Shop Apps-->
+                <div class="item"><img src="{{ v.product_image.url }}" alt="" height="200px"><span class="fw-bold"
+                        style="color: white;">{{v.title}}</span><br><span class="fs-5 " style="color: white;">Tk.
+                        {{v.discounted_price}}</span> <span class="fs-5 fw-light text-decoration-line-through"
+                        style="color: red;">
+                        <b>{{v.selling_price}}</b>
+                        
+                    </span></div>
+                <a href="{% url 'product-details' v.id %}" class="btn btn-info custom-button-1">Add to Card</a> 
+            
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+</div>
+<!--End 6th Product Slider-->
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+<!--Start customer review-->
+
+<h2 class="my-5 text-center product-title-home">Our Customer Review</h2>
+<div class='container'>
+<div class="popular_courses">
+    <div class="container">
+        <div class="row justify-content-center">
+            
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-carousel active_course owl-loaded owl-drag">
+                    <div class="owl-stage-outer">
+                        <div class="owl-stage" style="transform: translate3d(-1520px, 0px, 0px); transition: all 1.5s ease 0s; width: 3420px;">
+                            <div class="owl-item cloned" style="width: 250px height: 100px; margin-right: 30px;">
+                                <div class="single_course">
+                                    <div class="course_head">
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
+                                    </div>
+                                    <div class="course_content">
+                                        <span class="price">tk 23k</span>
+                                        <span class="tag mb-4 d-inline-block">Product</span>
+                                        <h4 class="mb-3">
+                                            <a href="#">Virtual Box</a>
+                                        </h4>
+                                        <p>
+                                            Nice Product. Faster Delivery
+                                        </p>
+                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+                                            <div class="authr_meta">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" />
+                                                <span class="d-inline-block ml-2">Cameron</span>
+                                            </div>
+                                            <div class="mt-lg-0 mt-3">
+                                                <span class="meta_info mr-4">
+                                                    <a href="#"> <i class="ti-user mr-2"></i>205 </a>
+                                                </span>
+                                                <span class="meta_info">
+                                                    <a href="#"> <i class="ti-heart mr-2"></i>306 </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item cloned" style="width: 250px height: 100px; margin-right: 30px;">
+                                <div class="single_course">
+                                    <div class="course_head">
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
+                                    </div>
+                                    <div class="course_content">
+                                        <span class="price">Tk 13k</span>
+                                        <span class="tag mb-4 d-inline-block">Product</span>
+                                        <h4 class="mb-3">
+                                            <a href="#">HoverBoard</a>
+                                        </h4>
+                                        <p>
+                                         They sold good brand product. and nice aftersell service
+                                        </p>
+                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+                                            <div class="authr_meta">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" />
+                                                <span class="d-inline-block ml-2">Jesica</span>
+                                            </div>
+                                            <div class="mt-lg-0 mt-3">
+                                                <span class="meta_info mr-4">
+                                                    <a href="#"> <i class="ti-user mr-2"></i>109 </a>
+                                                </span>
+                                                <span class="meta_info">
+                                                    <a href="#"> <i class="ti-heart mr-2"></i>230 </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item cloned" style="width: 250px height: 100px; margin-right: 30px;">
+                                <div class="single_course">
+                                    <div class="course_head">
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                    </div>
+                                    <div class="course_content">
+                                        <span class="price">Tk 40k</span>
+                                        <span class="tag mb-4 d-inline-block">Product</span>
+                                        <h4 class="mb-3">
+                                            <a href="#">SmartPhone</a>
+                                        </h4>
+                                        <p>
+                                          It's nice with good value.
+                                        </p>
+                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+                                            <div class="authr_meta">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" />
+                                                <span class="d-inline-block ml-2">Filma</span>
+                                            </div>
+                                            <div class="mt-lg-0 mt-3">
+                                                <span class="meta_info mr-4">
+                                                    <a href="#"> <i class="ti-user mr-2"></i>50 </a>
+                                                </span>
+                                                <span class="meta_info">
+                                                    <a href="#"> <i class="ti-heart mr-2"></i>70 </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item" style="width: 250px height: 100px; margin-right: 30px;">
+                                <div class="single_course">
+                                    <div class="course_head">
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" />
+                                    </div>
+                                    <div class="course_content">
+                                        <span class="price">Tk 55k</span>
+                                        <span class="tag mb-4 d-inline-block">Product</span>
+                                        <h4 class="mb-3">
+                                            <a href="#">HoverBoard</a>
+                                        </h4>
+                                        <p>
+                                          Highly recommanded
+                                        </p>
+                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+                                            <div class="authr_meta">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" />
+                                                <span class="d-inline-block ml-2">Denver</span>
+                                            </div>
+                                            <div class="mt-lg-0 mt-3">
+                                                <span class="meta_info mr-4">
+                                                    <a href="#"> <i class="ti-user mr-2"></i>170 </a>
+                                                </span>
+                                                <span class="meta_info">
+                                                    <a href="#"> <i class="ti-heart mr-2"></i>350 </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owl-item active" style="width: 250px height: 100px; margin-right: 30px;">
+                                <div class="single_course">
+                                    <div class="course_head">
+                                        <img class="img-fluid" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" />
+                                    </div>
+                                    <div class="course_content">
+                                        <span class="price">Tk 18k</span>
+                                        <span class="tag mb-4 d-inline-block">Product</span>
+                                        <h4 class="mb-3">
+                                            <a href="#">Action Camera</a>
+                                        </h4>
+                                        <p>
+                                          Good travel experience with their camera
+                                        </p>
+                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
+                                            <div class="authr_meta">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" />
+                                                <span class="d-inline-block ml-2">Jonathon</span>
+                                            </div>
+                                            <div class="mt-lg-0 mt-3">
+                                                <span class="meta_info mr-4">
+                                                    <a href="#"> <i class="ti-user mr-2"></i>345 </a>
+                                                </span>
+                                                <span class="meta_info">
+                                                    <a href="#"> <i class="ti-heart mr-2"></i>400 </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>  
+<!--End customer review-->
+
+
+<!--Start break-->
+<div class ="custom-break"></div>
+<!--End break-->
+
+  
+    
+
+<!-- End 3rd Product Slider -->
+{% endblock main-content %}

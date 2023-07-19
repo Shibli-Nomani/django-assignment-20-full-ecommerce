@@ -1,0 +1,100 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Orders{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/forms.css' %}"> {% endblock css%}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!--dynamic profile name after login-->
+        <h6 style = "color:#139B67">Great Comeback <span class = 'text-capitalize'>{{request.user}}</span></h6>
+        <div class="col-sm-3 border-end">
+            <ul class="list-unstyled">
+                <!--for selected on active-->
+                <li class="d-grid"><a href="{% url 'profile' %}" class="btn {{active}} btn-custom-pro1"><i class="fas fa-user-alt me-3"></i>Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-custom-pro1"><i class="fas fa-map-marker-alt me-3"></i>Address</a></li>
+                <li class="d-grid"><a href="{% url 'orders' %}" class="btn {{active}} btn-success" id="btn-order-pro1"><i class="fas fa-store me-3"></i>Orders</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 offset-sm-1">
+            <div class="row" >
+                <!--dictionary key from orders function in views.py-->
+                {% for op in order_placed %}
+                <div class="row shadow-sm mb-3 custom-order">
+                    <div class="col-sm-2">
+                        <img src = "{{op.product.product_image.url}}" alt="" srcset="" class = "img-fluid" height = "150" width = "150" id= "cus-order-img" >
+                    </div>
+                    <div class="col-sm-7">
+                        <p class="order-details"> Product: {{op.product.title}}</p>
+                        <p class="order-details"> Quantity: {{op.quantity}}</p>
+                        <p class="order-details"> Cost: {{op.total_cost}}</p>
+                    </div>
+                    <div class="col-sm-3 fw-bold">
+                        <p>Order Status: </p>
+                        <p style = "font-size: 14px; color:rgb(22, 117, 85)">{{op.status}}</p>
+                        {% if op.status == 'Accepted' %}
+                        
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%; background-color: #9ff80f;">
+                              <span class="sr-only">20% Complete</span>
+                            </div>
+                          </div>
+                        {% endif %}
+    
+                        {% if op.status == 'Packed' %}
+                        <div class="progress" >
+                            <div class="progress-bar"  role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%; background-color: #4b39b5;">
+                              <span class="sr-only">40% Complete</span>
+                            </div>
+                        </div>
+                        {% endif %}
+    
+                        {% if op.status == 'Reached at Warehouse' %}
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%; background-color: rgb(250, 126, 11);">
+                              <span class="sr-only">60% Complete</span>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        {% if op.status == 'On the way' %}
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%; background-color: rgb(178, 42, 196);">
+                              <span class="sr-only">80% Complete</span>
+                            </div>
+                        </div>
+                        {% endif %}
+    
+    
+                        {% if op.status == 'Delivered' %}
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background-color: rgb(20, 116, 49);">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
+                        </div>
+                          
+                        {% endif %}
+
+                        {% if op.status == 'Cancel' %}
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%; background-color: rgb(202, 78, 78);">
+                              <span class="sr-only">100% Complete</span>
+                            </div>
+                        </div>
+                          
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+    
+            </div>
+        </div>
+    </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock main-content %}

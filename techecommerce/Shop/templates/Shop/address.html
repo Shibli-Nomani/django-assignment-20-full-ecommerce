@@ -1,0 +1,41 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Address{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/forms.css' %}"> {% endblock css%}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <h6 style = "color:#139B67">Welcome <span class="text-capitalize">{{request.user}}</span></h6>
+        <div class="col-sm-3 border-end">
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="{% url 'profile' %}" class="btn btn-custom-pro1"><i class="fas fa-user-alt me-3"></i>Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address' %}" class="btn {{active}} btn-custom-pro1"><i class="fas fa-map-marker-alt me-3"></i>Address</a></li>
+                <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-custom-pro1"><i class="fas fa-store me-3"></i>Orders</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-8 offset-sm-1">
+            <div class="row">
+                {% for ad in add %}
+                <div class="col-sm-4 my-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 style="color: #3cc880;"><i class="fas fa-map-marker-alt fa-lg mx-1" style="color: #3cc880;"></i>Address {{forloop.counter}}</h5>
+                            <p style="color: #2b368c;">Name: {{ad.name}}</p>
+                            <small>Division: {{ad.division}}</small>
+                            <small>District: {{ad.district}}</small>
+                            <small>Thana: {{ad.thana}}</small>
+                            <small>Villorroad: {{ad.villorroad}}</small>
+                            <small>Zip Code: {{ad.zipcode}}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock main-content %}

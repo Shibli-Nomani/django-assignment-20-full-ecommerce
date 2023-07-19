@@ -1,0 +1,77 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Cart{% endblock title %}
+{% block main-content %}
+
+<div class="container my-5">
+    
+    <div class="row">
+        
+        <h1 class="text-center mb-5" style = "color:#139B67">Shopping Cart</h1>
+        
+        <div class="col-sm-8">
+            <div class="card shadow custom-shop-cart" style = "border-style: ridge">
+                <div class="card-body custom-shop-cart-body">
+                    <h3 style = "color:#2C147E">Product Details</h3>
+                    {% for cart in carts %} 
+                    <!--here we use product as per model attribute and data is coming from db-->
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3 text-center align-self-center"><a href="{{cart.product.product_image.url}}"><img
+                                src="{{cart.product.product_image.url}}" alt="" srcset=""
+                                class="img-fluid img-thumbnail shadow-sm" height="150" width="150"></a> </div>
+                        <div class="col-sm-9">
+                            <div>
+                                <h5 style= "color:#18877D">{{cart.product.title}}</h5>
+                                <p class="mb-2 text-muted small">{{cart.product.description}}</p>
+                                <div class="my-3">
+                                    <label for="quantity">Quantity:</label>
+                                    <!--js script class: minus-cart-->
+                                    <a class="minus-cart btn" pid="{{cart.product.id}}"><i class="fas fa-minus-square fa-lg"></i></a>
+                                    <!--cart model attribute quantity-->
+                                    <span id="quantity">{{cart.quantity}}</span>
+                                    <!--js script class: plus-cart-->
+                                    <a class="plus-cart btn" pid="{{cart.product.id}}"><i class="fas fa-plus-square fa-lg"></i></a>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <!--js script class: remove-cart-->
+                                    <a href="#" class="btn btn-sm btn-info text-white mr-3 remove-item" pid = "{{cart.product.id}}">Remove item </a>
+                                    <p class="mb-0"><span><strong> Tk {{cart.product.discounted_price}}</strong> <small class="fw-light text-decoration-line-through">{{cart.product.selling_price}}</small></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <hr class="text-muted">
+                    
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card shadow custom-shop-cart-amount">
+                <div class="card-body custom-shop-cart-amount">
+                    <h4 style="color:#2C147E"><center>Shipping Details</center></h4>
+                    <ul class="list-group">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0" style = "background-color:#bdeaf4">
+                            Amount<span>Tk.<span id = "amount"> {{amount}}</span></span></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center px-0" style = "background-color:#bdeaf4">
+                            Shipping<span>Tk.<span id = "shipping_amount"> {{shipping_amount}}</span></span></li>
+                        <li
+                            class="list-group-item  d-flex justify-content-between align-items-center border-0 px-0 mb-3" style = "background-color:#bdeaf4">
+                            <div>
+                                <strong>Total</strong> <small>(including VAT)</small>
+                            </div>
+                            <span><strong>Tk. <span id ="totalamount"> {{totalamount}}</strong></span></span>
+                        </li>
+                    </ul>
+                    <div class="d-grid"><a href="{% url 'checkout' %}" class="btn btn-custom-2" style = "margin-left: 44px; margin-right: 44px">Place Order</a></div>
+                </div>
+            </div>
+        </div> 
+
+    </div>
+</div>
+{% endblock main-content %}

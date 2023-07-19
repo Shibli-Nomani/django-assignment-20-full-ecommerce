@@ -1,0 +1,78 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Hoverboard{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/category.css' %}"> {% endblock css%}
+{% block main-content %}
+<!--Custom Margin -->
+<div class = "custom-break"> </div>
+<!--Product Details Start-->
+<div class="container my-6">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group shadow my-5">
+                <!--add url for hoverboard from urls.py-->
+                <a href="{% url 'hoverboard' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                    All Type of Hoverboard
+                </a>
+                <!--coming from apps urls.py for hoverboard path: hoverboarditem and brandname: GoPro/ value of data in different condition-->
+                <!--take a note no space in any name-->
+                <a href="{% url 'hoverboarditem' 'Titan-Electric' %}" class="list-group-item list-group-item-action">Titan Electric</a>
+                <a href="{% url 'hoverboarditem' 'Segway' %}" class="list-group-item list-group-item-action">Segway</a>
+                <a href="{% url 'hoverboarditem' 'Swagtron' %}" class="list-group-item list-group-item-action">Swagtron</a>
+                <a href="{% url 'hoverboarditem' 'Tomoloo' %}" class="list-group-item list-group-item-action">Tomoloo</a>
+                <a href="{% url 'hoverboarditem' 'above' %}" class="list-group-item list-group-item-action">Above 25000</a>
+                <a href="{% url 'hoverboarditem' 'below' %}" class="list-group-item list-group-item-action">Below 25000</a>
+                <a href="{% url 'hoverboarditem' 'Others' %}" class="list-group-item list-group-item-action">Others</a>
+            </div>
+        </div>
+        
+        <div class="col-sm-8">  
+            <div class="d-flex">
+                <select class="form-control">
+                        <option>Features</option>
+                        <option>A to Z</option>
+                </select>
+            </div>
+            <div class="row  px-2 py-3">
+                <!--dic value of hoverboard function -->
+                {% for prd in  hoverboards %}
+                <div class="col-sm-4 text-center mb-4">
+                    <!--urls.py path: product-details for views.py: products(ProductDetailView class)-->
+                        <div class="item shadow" id="custom-item">
+                            <img src="{{prd.product_image.url}}" alt="" class="cate-img">
+                            <div class="bg-info rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3"><small>{{prd.brand}}</small></div>
+                            <div class="fw-bold">{{prd.title}}</div>
+                            <ul class="list-unstyled d-flex justify-content-center mb-1">
+                                <li>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-warning fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                    <i class="text-muted fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <div class="fw-bold">Tk. {{prd.discounted_price}} <small
+                                    class="fw-light text-decoration-line-through">{{prd.selling_price}}</small>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="w-50 text-center border-end py-2">
+                                    <a class="text-body" href="{% url 'product-details' prd.id %}"><i class="fa fa-eye text-primary me-2"></i>View detail</a>
+                                </small>
+                                <small class="w-50 text-center py-2">
+                                    <a class="text-body" href="{% url 'product-details' prd.id %}"><i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+        
+
+{% endblock main-content %}

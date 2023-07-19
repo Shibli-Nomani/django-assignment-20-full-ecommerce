@@ -1,0 +1,80 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container">
+    <!--for loop-->
+    <div class = "custom-break">
+    <marquee direction="right"
+    style="border:orange 2px SOLID; background-color: orange">
+    <h6 style = "color: red">Exciting deal! You can save around <span class="bigger" style = "color: red">Tk. {{totalsavings}}</span> on your current items</h6>
+    </marquee>
+    </div>
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h4 style = "color:#139B67">Order Summary</h4>
+            <hr>
+            {% for items in cart_items%}
+            <div class="card mb-3">
+                <div class="card-body" id = "custom-checkout-item">
+                    <h5>Product: {{items.product.title}}</h5>
+                    <p>Quantity:{{items.quantity}}</p>
+                    <p class="fw-bold">Price: {{items.total_cost}}</p>
+                    <p class="fw-bold"><small>Including Shipping Price: {{items.shipping_cost}}</small></p>
+                    <p  style = "color:orange; font-size:25px; font-weight: 500"><b><small>saving amount: {{items.total_saving}}</b></small></p>
+                </div>
+            </div>
+
+            
+            {% endfor %} 
+            <small>Term and Condition: Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia, ullam saepe!
+                Iure optio repellat dolor velit, minus rem. Facilis cumque neque numquam laboriosam, accusantium
+                adipisci nisi nihil in et quis?</small>    
+        </div>
+        
+        <div class="col-sm-6">
+            <h4 style = "color:#139B67">Total Amount</h4>
+            <hr>
+            <div class="card" id="custom-final-price">
+                <div class="card-body">
+                    <p style="color:#0d247e"><i class="fa fa-solid fa-money-bill" style="color:orange"></i><span style="padding-left: 10px;">Total Amount(including shipping):Tk. {{totalamount}}</span></p>
+                    <p style="color:#0d247e"><i class="fa fa-solid fa-truck" style="color:orange"></i><span style="padding-left: 10px;">Shipping Cost: Tk. {{shipping_amount}}</span></p>
+                    <p style = "color:orange"><i class="fa fa-solid fa-smile" style="color:red"></i><span style="padding-left: 10px;">Saving on Product: Tk. {{totalsavings}}</span></p>
+                    
+                </div>
+            </div> 
+            <div class="custom-break"></div>
+            
+            <h4 style = "color:#139B67" >Select Shipping Address</h4>
+            <hr>
+            
+            <!--to connects with paymentdone function in views.py and redirect to order page-->
+            <form action="/paymentdone">
+                <div class="text-end">
+                    <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue Payment</button>
+                </div>
+                {% for ad in add%}
+                <div class="form-check mt-2 mb-3">
+                    <!--select one option from multiple address using {{ad.id}}-->
+                    <input class="form-check-input" type="radio" name ="custid" id = "custadd" value="{{ad.id}}">
+                    <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+                        <!--no of address showing dynamically if customer has multiple address in profile-->
+                        Address: {{forloop.counter}} </label>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5>{{ad.name}}</h5>
+                        <p>{{ad.division}}, {{ad.district}}, {{ad.thana}},{{ad.villorroad}},{{ad.zipcode}}</p>
+                    </div>
+                </div>
+                
+                {% endfor %}
+                
+            </form>
+            
+        </div>
+        
+    </div>  
+</div>
+<div class="custom-break"></div>
+{% endblock main-content %}

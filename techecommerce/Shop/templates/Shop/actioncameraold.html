@@ -1,0 +1,52 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Action Camera{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/category.css' %}"> {% endblock css%}
+{% block main-content %}
+<!--Custom Margin -->
+<div class = "custom-break"> </div>
+<!--Product Details Start-->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                <!--add url for actioncamera from urls.py-->
+                <a href="{% url 'actioncamera' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                    All Type of Action Camera
+                </a>
+                <!--coming from apps urls.py for actioncamera path: actioncameraitem and brandname: GoPro/ value of data in different condition-->
+                <!--take a note no space in any name-->
+                <a href="{% url 'actioncameraitem' 'Xiaomi' %}" class="list-group-item list-group-item-action">Xiaomi</a>
+                <a href="{% url 'actioncameraitem' 'GoPro' %}" class="list-group-item list-group-item-action">Go Pro</a>
+                <a href="{% url 'actioncameraitem' 'Ricoh-Theta-Z1' %}" class="list-group-item list-group-item-action">Ricoh Theta Z1</a>
+                <a href="{% url 'actioncameraitem' 'above' %}" class="list-group-item list-group-item-action">Above 25000</a>
+                <a href="{% url 'actioncameraitem' 'below' %}" class="list-group-item list-group-item-action">Below 25000</a>
+            </div>
+        </div>
+        <div class="col-sm-8">  
+            <div class="row">
+                <!--dic value of actioncamera function -->
+                {% for prd in actioncameras %}
+                <div class="col-sm-4 text-center mb-4">
+                    <!--urls.py path: product-details for views.py: products(ProductDetailView class)-->
+                    <a href="{% url 'product-details' prd.id %}" class="btn">
+                        <div class="item">
+                            <img src="{{prd.product_image.url}}" alt="" class="cate-img">
+                            <div class="fw-bold">{{prd.title}}</div>
+                            <div class="fw-bold">Tk. {{prd.discounted_price}} <small
+                                    class="fw-light text-decoration-line-through">{{prd.selling_price}}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock main-content %}

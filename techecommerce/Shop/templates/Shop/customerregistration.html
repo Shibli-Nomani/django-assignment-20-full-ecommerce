@@ -1,0 +1,64 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+
+{% block title %}Customer Registration{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/forms.css' %}"> {% endblock css%}
+{% block main-content %}
+<div class="container">
+    <div class="row my-3">
+        <div class="col-sm-6 offset-sm-3">
+            <h3 style = "color:#139B67"><center>Customer Registration</center></h3>
+            <hr>
+            <form action="" method="post" novalidate class=" custom-form shadow p-5">
+                
+                    <div class="form-group mb3">
+
+
+
+                        <!--dictoinary key veiws.py-->
+                        <!--{{form}}-->
+                        {% csrf_token %}
+                        <!--to show successful message coming from views.py-->
+                        {% if messages %}
+                        {% for message in messages %}
+                        <p {% if message.tags %} class = "alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+                        {% endfor %}
+                        {% endif %}
+                        <!--running loop for form to avoid error lines-->
+                        <!--define bootstrap class, mb: margin bottom, 3px-->
+                        {% for fm in form %}
+                        {{fm.label_tag}}{{fm}}
+                
+                        <div><small class = 'text-danger'>{{fm.errors|striptags}}</small></div>
+                        {% endfor %}
+                        <!--submission button-->
+                        <div>
+                        <input type = "submit" value = "Submit" class = 'btn btn-success' style = "margin-top: 7px;">
+                        </div>
+                
+                        <div class="text-center text-primary fw-bold"><small>Existing User ? <a href="{% url 'login' %}"
+                        class="text-danger">Login Now</a> </small></div>
+                        <!--to send error message at the end for incorrect input-->
+                        {% if form.non_field_errors %}
+                        {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+       
+    
+                
+             
+
+   
+            
+{% endblock main-content %}
+
+

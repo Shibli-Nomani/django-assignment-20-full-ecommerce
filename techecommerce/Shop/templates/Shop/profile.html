@@ -1,0 +1,86 @@
+{% extends 'Shop/common/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock title %}
+{% block css%}<link rel="stylesheet" href="{% static 'Shop/css/forms.css' %}"> {% endblock css%}
+{% block main-content %}
+
+
+
+
+
+
+<div class="container my-5">
+    <div class="row">
+        <!--dynamic profile name after login-->
+        <h6 style = "color:#139B67">Great Comeback <span class = 'text-capitalize'>{{request.user}}</span></h6>
+        <div class="col-sm-3 border-end">
+            <ul class="list-unstyled">
+                <!--for selected on active-->
+                <li class="d-grid"><a href="{% url 'profile' %}" class="btn {{active}} btn-custom-pro1"><i class="fas fa-user-alt me-3"></i>Profile</a></li>
+                <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-custom-pro1"><i class="fas fa-map-marker-alt me-3"></i>Address</a></li>
+                <li class="d-grid"><a href="{% url 'orders' %}" class="btn btn-custom-pro1"><i class="fas fa-store me-3"></i>Orders</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-7 offset-sm-1">
+             <div class="text-center card-box">
+                    <div class="member-card pt-2 pb-2">
+                        <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle img-thumbnail" alt="profile-image" id="img-thumbnail-resize"></div>
+                        <div class="">
+                            <h4 class = 'text-capitalize'>{{request.user}}</h4>
+                        </div>
+                        <div class="mt-0">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div type="button" class="btn btn-info  btn-rounded waves-effect w-md waves-light" >
+                                        <small class="mb-0" style="color:white">Total Orders</small>
+                                        <small  class="mb-0">2563</small>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div type="button" class="btn btn-warning btn-rounded waves-effect w-md waves-light" >
+                                        <small class="mb-0" style="color:white">Last Purchase</small>
+                                        <small class="mb-0" style="color:white">256300</small>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div type="button" class="btn btn-danger btn-rounded waves-effect w-md waves-light" >
+                                        <small class="mb-0" style="color:white">Join Date</small>
+                                        <small  class="mb-0">25-02-2022</small>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+     
+
+            <!--errors and message after submission-->
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <p {% if message.tags %} class = "alert alert-{{message.tags}} mb-5"
+            {% endif %}>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            <!--profile-->
+            <form action="" method="post" class = "custom-form-profile">
+                {% csrf_token %}
+                <!--Profile form-->
+                {% for fm in form %}
+                <div class="form-group col-lg-6 mb-3">{{fm.label_tag}}{{fm}}
+                    <small class="text-danger">{{fm.errors|striptags}}</small>
+                </div>
+                {% endfor %}
+                <div class+"col-12 mt-3">
+                    <button type="submit" class="btn btn-info btn-profile">Submit</button>
+                </div>
+            </form>
+            
+
+        </div>
+    </div>
+</div>
+{% endblock main-content %}

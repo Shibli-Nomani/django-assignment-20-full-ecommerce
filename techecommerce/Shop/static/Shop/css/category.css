@@ -1,0 +1,11 @@
+/*product image size*/
+
+.cate-img {
+    vertical-align: middle;
+    border-style:ridge;
+    width: 200px;
+    height: 225px;
+}
+#custom-item{
+    border: blue;
+}

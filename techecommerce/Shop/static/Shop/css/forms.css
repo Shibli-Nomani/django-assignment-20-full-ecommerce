@@ -1,0 +1,94 @@
+
+
+.errorlist{
+    
+    color: red;
+    padding-top: 2px;
+}
+
+
+  
+
+label{
+    color: rgb(13, 85, 72);
+    font-weight: 500;
+    
+}
+
+#id_username, #id_password, #id_email, #id_password1, #id_password2, #id_old_password, #id_new_password1, #id_new_password2{
+    color: rgb(128, 9, 65);
+    border-color:#327cb4 ;
+    border-width: 2px;
+
+}
+#id_email{
+    padding-left: 20px;
+}
+
+.custom-form{
+    background-color: #aedaeb;
+    border-radius: 20px;}
+/*profile*/
+.custom-form-profile{
+        background-color: #aedaeb;
+        border-radius: 20px;
+        padding: 51px;
+    
+}
+.btn-profile{
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.btn-custom-pro1{
+    margin-right: 45px;
+}
+#id_name, #id_division, #id_district, #id_thana, #id_villorroad, #id_zipcode{
+    color: rgb(128, 9, 65);
+    border-color:#327cb4 ;
+    border-width: 2px;
+    
+}
+#btn-order-pro1{
+    margin-right: 45px;
+    color: #ffffff;
+}
+
+
+
+#id_textarea{
+    border: groove #411667;
+    background:#327cb4 ;
+    border-radius: 10px;
+    border-width: 2px;
+    color: rgb(128, 9, 65);
+}
+
+#id_zipcode
+    {
+        border: groove #411667;
+        border-color:#327cb4 ;
+        border-width: 2px;
+        background:#f3f3f3;
+        border-radius: 5px;
+        
+    
+        
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 37px;
+        padding-left: 12px;
+    
+        text-align: center;
+
+    
+}
+
+#id_agree{
+    border: groove blue;
+    background:rgb(122, 196, 171) ;
+    padding-right: 200px ;
+
+}
